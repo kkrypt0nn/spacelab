@@ -73,9 +73,10 @@ RUN TMP="$(mktemp)" && \
     unzip -q "${TMP}" -d "/tmp/binwalk/" && \
     rm "${TMP}" && \
     cd "/tmp/binwalk/binwalk-${BINWALK_VERSION}" && \
-    cargo install \
-      --locked \
-      --path . && \
+    cargo build --release && \
+    mkdir -p "/opt/binwalk" && \
+    mv "target/release/binwalk" "/opt/binwalk/binwalk" && \
+    ln -sf "/opt/binwalk/binwalk" "/usr/local/bin/binwalk" && \
     rm -r "/tmp/binwalk/"
 
 # Hayabusa
@@ -90,8 +91,9 @@ RUN case "${TARGETARCH}" in \
     mkdir -p "/opt/hayabusa" && \
     unzip -q "${TMP}" -d "/opt/hayabusa/" && \
     rm "${TMP}" && \
-    chmod +x "/opt/hayabusa/hayabusa-${HAYABUSA_VERSION}-lin-${HAYABUSA_ARCH}" && \
-    ln -sf "/opt/hayabusa/hayabusa-${HAYABUSA_VERSION}-lin-${HAYABUSA_ARCH}" "/usr/local/bin/hayabusa"
+    mv "/opt/hayabusa/hayabusa-${HAYABUSA_VERSION}-lin-${HAYABUSA_ARCH}" "/opt/hayabusa/hayabusa" && \
+    chmod +x "/opt/hayabusa/hayabusa" && \
+    ln -sf "/opt/hayabusa/hayabusa" "/usr/local/bin/hayabusa"
 
 # Volatility 3
 RUN TMP="$(mktemp)" && \
@@ -112,12 +114,14 @@ RUN apt purge -y \
       automake \
       pkg-config \
       python3-dev \
-      libfontconfig1-dev \
       libjpeg-dev \
       libusb-1.0-0-dev && \
     apt autoremove -y && \
     apt clean && \
-    rm -rf /var/lib/apt/lists/*
+    rm -rf /var/lib/apt/lists/* && \
+    rm -rf /root/.cargo && \
+    rm -rf /root/.cache && \
+    rm -rf /tmp
 
 WORKDIR /lab
 
