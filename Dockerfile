@@ -1,4 +1,4 @@
-FROM ubuntu:26.04@sha256:3131b4cc82a783df6c9df078f86e01819a13594b865c2cad47bd1bca2b7063bb
+FROM ubuntu:26.04
 
 ARG TARGETARCH
 
@@ -39,6 +39,10 @@ ARG VOLATILITY3_HASH="b3fef4524bf1c3937225c347c5a91b6b3408a7156ceb0116801dc1dfd8
 # YARA
 # https://packages.ubuntu.com/resolute/yara
 ARG YARA_VERSION="4.5.5-1"
+
+# YARA-X
+# https://github.com/VirusTotal/yara-x
+ARG YARA_X_VERSION="1.20.0"
 
 RUN apt update && apt install -y --no-install-recommends \
       autoconf \
@@ -105,6 +109,21 @@ RUN TMP="$(mktemp)" && \
     cd "/opt/volatility3/volatility3-${VOLATILITY3_VERSION}" && \
     pip install --user -e ".[full]" --break-system-packages
 ENV PATH="/root/.local/bin:${PATH}"
+
+# YARA-X
+RUN case "${TARGETARCH}" in \
+      amd64) YARA_X_ARCH="x86_64"; YARA_X_HASH="cabb8df46492fff59c51261302c71ed9cb2cef393d3f0ca560801a34a8e24cbe" ;; \
+      arm64) YARA_X_ARCH="aarch64"; YARA_X_HASH="c1d6f63a6fe55c17b5ddbfcb89d34599b737226a683ee492b12d92d1d541f304" ;; \
+      *) echo "Unsupported architecture: ${TARGETARCH}" && exit 1 ;; \
+    esac && \
+    TMP="$(mktemp)" && \
+    wget -O "${TMP}" "https://github.com/VirusTotal/yara-x/releases/download/v${YARA_X_VERSION}/yara-x-v${YARA_X_VERSION}-${YARA_X_ARCH}-unknown-linux-gnu.tar.gz" && \
+    echo "${YARA_X_HASH} ${TMP}" | sha256sum -c - && \
+    mkdir -p "/opt/yara-x" && \
+    tar -xzf "${TMP}" -C "/opt/yara-x/" && \
+    rm "${TMP}" && \
+    chmod +x "/opt/yara-x/yr" && \
+    ln -sf "/opt/yara-x/yr" "/usr/local/bin/yr"
 
 # Cleanup
 RUN apt purge -y \
