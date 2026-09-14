@@ -17,7 +17,7 @@ ARG FOREMOST_VERSION="1.5.7-11build1"
 
 # Hayabusa
 # https://github.com/Yamato-Security/hayabusa
-ARG HAYABUSA_VERSION="4.0.0"
+ARG HAYABUSA_VERSION="4.1.0"
 
 # Scalpel
 # https://packages.ubuntu.com/resolute/scalpel
@@ -85,8 +85,8 @@ RUN TMP="$(mktemp)" && \
 
 # Hayabusa
 RUN case "${TARGETARCH}" in \
-      amd64) HAYABUSA_ARCH="x64-gnu"; HAYABUSA_HASH="1137e27c795e83f8837c962f2136cf1634a67a655d7ba8efa8b2d38a33ba09b4" ;; \
-      arm64) HAYABUSA_ARCH="aarch64-gnu"; HAYABUSA_HASH="e41e9ecac3197f59874e47b8d982ec0557e2686d68f172a9d99f4ca7ac3ae594" ;; \
+      amd64) HAYABUSA_ARCH="x64-gnu"; HAYABUSA_HASH="ed2c4595f95b8e765d37f392212587304ce89ed7cfb6682b425a96d126ed67eb" ;; \
+      arm64) HAYABUSA_ARCH="aarch64-gnu"; HAYABUSA_HASH="9a112ed5ead6850c0f7f1b2a18b2c9c71c6eddc469cc2e1a31f5ed1170afa628" ;; \
       *) echo "Unsupported architecture: ${TARGETARCH}" && exit 1 ;; \
     esac && \
     TMP="$(mktemp)" && \
