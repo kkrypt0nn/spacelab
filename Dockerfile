@@ -17,7 +17,7 @@ ARG FOREMOST_VERSION="1.5.7-11build1"
 
 # Hayabusa
 # https://github.com/Yamato-Security/hayabusa
-ARG HAYABUSA_VERSION="4.1.0"
+ARG HAYABUSA_VERSION="4.3.1"
 
 # Scalpel
 # https://packages.ubuntu.com/resolute/scalpel
@@ -33,8 +33,8 @@ ARG TSK_VERSION="4.12.1+dfsg-3build1"
 
 # Volatility 3
 # https://github.com/volatilityfoundation/volatility3
-ARG VOLATILITY3_VERSION="2.28.0"
-ARG VOLATILITY3_HASH="b3fef4524bf1c3937225c347c5a91b6b3408a7156ceb0116801dc1dfd856a85c"
+ARG VOLATILITY3_VERSION="2.28.2"
+ARG VOLATILITY3_HASH="84d57eacb4a3300f440d5cb091a33782f1a2954d0a3e0b676b09516366a92158" # Source code (zip)
 
 # YARA
 # https://packages.ubuntu.com/resolute/yara
@@ -42,7 +42,7 @@ ARG YARA_VERSION="4.5.5-1"
 
 # YARA-X
 # https://github.com/VirusTotal/yara-x
-ARG YARA_X_VERSION="1.20.0"
+ARG YARA_X_VERSION="1.22.1"
 
 RUN apt update && apt install -y --no-install-recommends \
       autoconf \
@@ -85,8 +85,8 @@ RUN TMP="$(mktemp)" && \
 
 # Hayabusa
 RUN case "${TARGETARCH}" in \
-      amd64) HAYABUSA_ARCH="x64-gnu"; HAYABUSA_HASH="ed2c4595f95b8e765d37f392212587304ce89ed7cfb6682b425a96d126ed67eb" ;; \
-      arm64) HAYABUSA_ARCH="aarch64-gnu"; HAYABUSA_HASH="9a112ed5ead6850c0f7f1b2a18b2c9c71c6eddc469cc2e1a31f5ed1170afa628" ;; \
+      amd64) HAYABUSA_ARCH="x64-gnu"; HAYABUSA_HASH="a4fbdae9b13a5fe0f3b3d98981dd18775f50e5402cf3dee3ba85d4ecd252370e" ;; \
+      arm64) HAYABUSA_ARCH="aarch64-gnu"; HAYABUSA_HASH="c3903f50e3726519e0e98936a93058703dc76294e2dd99b61d82e00c5b53fee4" ;; \
       *) echo "Unsupported architecture: ${TARGETARCH}" && exit 1 ;; \
     esac && \
     TMP="$(mktemp)" && \
@@ -112,8 +112,8 @@ ENV PATH="/root/.local/bin:${PATH}"
 
 # YARA-X
 RUN case "${TARGETARCH}" in \
-      amd64) YARA_X_ARCH="x86_64"; YARA_X_HASH="cabb8df46492fff59c51261302c71ed9cb2cef393d3f0ca560801a34a8e24cbe" ;; \
-      arm64) YARA_X_ARCH="aarch64"; YARA_X_HASH="c1d6f63a6fe55c17b5ddbfcb89d34599b737226a683ee492b12d92d1d541f304" ;; \
+      amd64) YARA_X_ARCH="x86_64"; YARA_X_HASH="c0ff80408d57b94f8348b9b19b5c70fb03e6471e7fdd761c97e0b4876804eecf" ;; \
+      arm64) YARA_X_ARCH="aarch64"; YARA_X_HASH="bdddb06ca550319c26aab57d2ee0ea792b0a5175565b22f1ba04813937450fb7" ;; \
       *) echo "Unsupported architecture: ${TARGETARCH}" && exit 1 ;; \
     esac && \
     TMP="$(mktemp)" && \
