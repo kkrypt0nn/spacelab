@@ -58,5 +58,58 @@
       "versioningTemplate": "deb",
       "registryUrlTemplate": "https://archive.ubuntu.com/ubuntu?suite=resolute&components=main,universe,restricted,multiverse&binaryArch=amd64"
     }
+  ],
+
+  "packageRules": [
+    {
+      "description": "Label Binwalk updates",
+      "matchPackageNames": ["ReFirmLabs/binwalk"],
+      "addLabels": ["tool/binwalk"]
+    },
+    {
+      "description": "Label dcfldd updates",
+      "matchPackageNames": ["dcfldd"],
+      "addLabels": ["tool/dcfldd"]
+    },
+    {
+      "description": "Label Foremost updates",
+      "matchPackageNames": ["foremost"],
+      "addLabels": ["tool/foremost"]
+    },
+    {
+      "description": "Label Hayabusa updates",
+      "matchPackageNames": ["Yamato-Security/hayabusa"],
+      "addLabels": ["tool/hayabusa"]
+    },
+    {
+      "description": "Label Scalpel updates",
+      "matchPackageNames": ["scalpel"],
+      "addLabels": ["tool/scalpel"]
+    },
+    {
+      "description": "Label TestDisk & PhotoRec updates",
+      "matchPackageNames": ["testdisk"],
+      "addLabels": ["tool/testdisk"]
+    },
+    {
+      "description": "Label The Sleuth Kit updates",
+      "matchPackageNames": ["sleuthkit"],
+      "addLabels": ["tool/sleuthkit"]
+    },
+    {
+      "description": "Label Volatility 3 updates",
+      "matchPackageNames": ["volatilityfoundation/volatility3"],
+      "addLabels": ["tool/volatility3"]
+    },
+    {
+      "description": "Label YARA updates",
+      "matchPackageNames": ["yara"],
+      "addLabels": ["tool/yara"]
+    },
+    {
+      "description": "Label YARA-X updates",
+      "matchPackageNames": ["VirusTotal/yara-x"],
+      "addLabels": ["tool/yara-x"]
+    }
   ]
 }
