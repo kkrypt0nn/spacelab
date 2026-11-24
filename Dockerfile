@@ -50,7 +50,7 @@ ARG YARA_VERSION="4.5.5-1"
 # YARA-X
 # https://github.com/VirusTotal/yara-x
 # renovate: datasource=github-tags depName=VirusTotal/yara-x
-ARG YARA_X_VERSION="1.23.0"
+ARG YARA_X_VERSION="1.24.0"
 
 RUN apt update && apt install -y --no-install-recommends \
       autoconf \
