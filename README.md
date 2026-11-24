@@ -17,4 +17,4 @@ docker run --rm -it -v "$(pwd)/data:/lab/data" kkrypt0nn/spacelab
 - [`The Sleuth Kit`](https://www.sleuthkit.org/) - Version `4.12.1+dfsg-3build1` <!-- renovate: datasource=deb depName=sleuthkit -->
 - [`Volatility 3`](https://github.com/volatilityfoundation/volatility3) - Version `2.28.2` <!-- renovate: datasource=github-tags depName=volatilityfoundation/volatility3 -->
 - [`YARA`](https://virustotal.github.io/yara/) - Version `4.5.5-1` <!-- renovate: datasource=deb depName=yara -->
-- [`YARA-X`](https://github.com/VirusTotal/yara-x) - Version `1.23.0` <!-- renovate: datasource=github-tags depName=VirusTotal/yara-x -->
+- [`YARA-X`](https://github.com/VirusTotal/yara-x) - Version `1.24.0` <!-- renovate: datasource=github-tags depName=VirusTotal/yara-x -->
