@@ -60,3 +60,23 @@ jobs:
             kkrypt0nn/spacelab:${{ steps.version.outputs.version_no_v }}
             ghcr.io/kkrypt0nn/spacelab:latest
             ghcr.io/kkrypt0nn/spacelab:${{ steps.version.outputs.version_no_v }}
+
+      - name: Create and push Git tag
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          git tag -a "$VERSION" -m "Release $VERSION"
+          git push origin "$VERSION"
+        env:
+          VERSION: ${{ inputs.version }}
+
+      - name: Create GitHub Release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          VERSION: ${{ inputs.version }}
+        run: |
+          gh release create "$VERSION" \
+            --verify-tag \
+            --title "Spacelab $VERSION" \
+            --generate-notes

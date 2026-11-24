@@ -73,6 +73,10 @@ Then make Renovate assign this label for when the package in question gets updat
 }
 ```
 
+### Update the [`release.yaml`](./.github/release.yaml) file
+
+Add the label for the `- title: "🛠️ Tools updates"` category.
+
 ## All code changes happen through pull requests
 
 Pull requests are the best way to propose changes to the codebase. We actively welcome your pull requests:

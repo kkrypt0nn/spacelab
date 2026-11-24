@@ -1,0 +1,51 @@
+changelog:
+  exclude:
+    labels:
+      - kind/duplicate
+      - kind/question
+      - kind/spam
+      - status/invalid
+      - status/wont-do
+      - ai-slop
+
+  categories:
+    - title: "🛠️ Tools updates"
+      labels:
+        - tool/binwalk
+        - tool/dcfldd
+        - tool/foremost
+        - tool/hayabusa
+        - tool/scalpel
+        - tool/testdisk
+        - tool/sleuthkit
+        - tool/volatility3
+        - tool/yara
+        - tool/yara-x
+
+    - title: "🚀 Features"
+      labels:
+        - kind/enhancement
+
+    - title: "🐛 Bug fixes"
+      labels:
+        - kind/bug
+
+    - title: "♻️ Refactoring"
+      labels:
+        - kind/refactor
+
+    - title: "⚠️ Deprecations"
+      labels:
+        - kind/deprecation
+
+    - title: "📚 Documentation"
+      labels:
+        - area/docs
+
+    - title: "⚙️ CI/CD and GitHub"
+      labels:
+        - area/github
+
+    - title: "🔧 Other changes"
+      labels:
+        - "*"
