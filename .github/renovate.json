@@ -1,0 +1,62 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "config:recommended",
+    "helpers:pinGitHubActionDigests",
+    ":gitSignOff",
+    "group:allNonMajor"
+  ],
+  "assignees": ["kkrypt0nn"],
+  "dependencyDashboard": {
+    "enabled": true,
+    "title": "Renovate Dashboard 🤖"
+  },
+  "minimumReleaseAge": "7 days",
+  "rangeStrategy": "pin",
+  "rebaseWhen": "conflicted",
+  "schedule": ["on friday and saturday"],
+
+  "customManagers": [
+    {
+      "customType": "regex",
+      "managerFilePatterns": ["/^Dockerfile$/"],
+      "matchStrings": [
+        "# renovate: datasource=github-tags depName=(?<depName>[^\\s]+)\\s+ARG [A-Z0-9_]+_VERSION=\"(?<currentValue>[^\"]+)\""
+      ],
+      "datasourceTemplate": "github-tags",
+      "versioningTemplate": "semver",
+      "extractVersionTemplate": "^v(?<version>.*)$"
+    },
+    {
+      "customType": "regex",
+      "managerFilePatterns": ["/^README\\.md$/"],
+      "matchStrings": [
+        "- \\[[^\\]]+\\]\\([^\\)]+\\) - Version `(?<currentValue>[^`]+)` <!-- renovate: datasource=github-tags depName=(?<depName>[^\\s]+) -->"
+      ],
+      "datasourceTemplate": "github-tags",
+      "versioningTemplate": "semver",
+      "extractVersionTemplate": "^v(?<version>.*)$"
+    },
+
+    {
+      "customType": "regex",
+      "managerFilePatterns": ["/^Dockerfile$/"],
+      "matchStrings": [
+        "# renovate: datasource=deb depName=(?<depName>[^\\s]+)\\s+ARG [A-Z0-9_]+_VERSION=\"(?<currentValue>[^\"]+)\""
+      ],
+      "datasourceTemplate": "deb",
+      "versioningTemplate": "deb",
+      "registryUrlTemplate": "https://archive.ubuntu.com/ubuntu?suite=resolute&components=main,universe,restricted,multiverse&binaryArch=amd64"
+    },
+    {
+      "customType": "regex",
+      "managerFilePatterns": ["/^README\\.md$/"],
+      "matchStrings": [
+        "- \\[[^\\]]+\\]\\([^\\)]+\\) - Version `(?<currentValue>[^`]+)` <!-- renovate: datasource=deb depName=(?<depName>[^\\s]+) -->"
+      ],
+      "datasourceTemplate": "deb",
+      "versioningTemplate": "deb",
+      "registryUrlTemplate": "https://archive.ubuntu.com/ubuntu?suite=resolute&components=main,universe,restricted,multiverse&binaryArch=amd64"
+    }
+  ]
+}

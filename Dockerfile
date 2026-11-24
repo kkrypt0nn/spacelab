@@ -4,44 +4,52 @@ ARG TARGETARCH
 
 # binwalk
 # https://github.com/ReFirmLabs/binwalk
+# renovate: datasource=github-tags depName=ReFirmLabs/binwalk
 ARG BINWALK_VERSION="3.1.0"
-ARG BINWALK_HASH="fabf028b31679ffea7a4b10df5ab7be7d73eb1ff3f7772909fb7955c85003efe"
 
 # dcfldd
 # https://packages.ubuntu.com/resolute/dcfldd
+# renovate: datasource=deb depName=dcfldd
 ARG DCFLDD_VERSION="1.9.3-2"
 
 # Foremost
 # https://packages.ubuntu.com/resolute/foremost
+# renovate: datasource=deb depName=foremost
 ARG FOREMOST_VERSION="1.5.7-11build1"
 
 # Hayabusa
 # https://github.com/Yamato-Security/hayabusa
+# renovate: datasource=github-tags depName=Yamato-Security/hayabusa
 ARG HAYABUSA_VERSION="4.3.1"
 
 # Scalpel
 # https://packages.ubuntu.com/resolute/scalpel
+# renovate: datasource=deb depName=scalpel
 ARG SCALPEL_VERSION="1.60+git20240110.6960eb2-2build1"
 
 # TestDisk & PhotoRec
 # https://packages.ubuntu.com/resolute/testdisk
+# renovate: datasource=deb depName=testdisk
 ARG TESTDISK_VERSION="7.2-0.1build1"
 
 # The Sleuth Kit
 # https://packages.ubuntu.com/resolute/sleuthkit
+# renovate: datasource=deb depName=sleuthkit
 ARG TSK_VERSION="4.12.1+dfsg-3build1"
 
 # Volatility 3
 # https://github.com/volatilityfoundation/volatility3
+# renovate: datasource=github-tags depName=volatilityfoundation/volatility3
 ARG VOLATILITY3_VERSION="2.28.2"
-ARG VOLATILITY3_HASH="84d57eacb4a3300f440d5cb091a33782f1a2954d0a3e0b676b09516366a92158" # Source code (zip)
 
 # YARA
 # https://packages.ubuntu.com/resolute/yara
+# renovate: datasource=deb depName=yara
 ARG YARA_VERSION="4.5.5-1"
 
 # YARA-X
 # https://github.com/VirusTotal/yara-x
+# renovate: datasource=github-tags depName=VirusTotal/yara-x
 ARG YARA_X_VERSION="1.22.1"
 
 RUN apt update && apt install -y --no-install-recommends \
@@ -72,7 +80,6 @@ RUN apt update && apt install -y --no-install-recommends \
 # binwalk
 RUN TMP="$(mktemp)" && \
     wget -O "${TMP}" "https://github.com/ReFirmLabs/binwalk/archive/refs/tags/v${BINWALK_VERSION}.zip" && \
-    echo "${BINWALK_HASH} ${TMP}" | sha256sum -c - && \
     mkdir -p "/tmp/binwalk" && \
     unzip -q "${TMP}" -d "/tmp/binwalk/" && \
     rm "${TMP}" && \
@@ -84,14 +91,8 @@ RUN TMP="$(mktemp)" && \
     rm -r "/tmp/binwalk/"
 
 # Hayabusa
-RUN case "${TARGETARCH}" in \
-      amd64) HAYABUSA_ARCH="x64-gnu"; HAYABUSA_HASH="a4fbdae9b13a5fe0f3b3d98981dd18775f50e5402cf3dee3ba85d4ecd252370e" ;; \
-      arm64) HAYABUSA_ARCH="aarch64-gnu"; HAYABUSA_HASH="c3903f50e3726519e0e98936a93058703dc76294e2dd99b61d82e00c5b53fee4" ;; \
-      *) echo "Unsupported architecture: ${TARGETARCH}" && exit 1 ;; \
-    esac && \
-    TMP="$(mktemp)" && \
+RUN TMP="$(mktemp)" && \
     wget -O "${TMP}" "https://github.com/Yamato-Security/hayabusa/releases/download/v${HAYABUSA_VERSION}/hayabusa-${HAYABUSA_VERSION}-lin-${HAYABUSA_ARCH}.zip" && \
-    echo "${HAYABUSA_HASH} ${TMP}" | sha256sum -c - && \
     mkdir -p "/opt/hayabusa" && \
     unzip -q "${TMP}" -d "/opt/hayabusa/" && \
     rm "${TMP}" && \
@@ -102,7 +103,6 @@ RUN case "${TARGETARCH}" in \
 # Volatility 3
 RUN TMP="$(mktemp)" && \
     wget -O "${TMP}" "https://github.com/volatilityfoundation/volatility3/archive/refs/tags/v${VOLATILITY3_VERSION}.zip" && \
-    echo "${VOLATILITY3_HASH} ${TMP}" | sha256sum -c - && \
     mkdir -p "/opt/volatility3" && \
     unzip -q "${TMP}" -d "/opt/volatility3/" && \
     rm "${TMP}" && \
@@ -111,14 +111,8 @@ RUN TMP="$(mktemp)" && \
 ENV PATH="/root/.local/bin:${PATH}"
 
 # YARA-X
-RUN case "${TARGETARCH}" in \
-      amd64) YARA_X_ARCH="x86_64"; YARA_X_HASH="c0ff80408d57b94f8348b9b19b5c70fb03e6471e7fdd761c97e0b4876804eecf" ;; \
-      arm64) YARA_X_ARCH="aarch64"; YARA_X_HASH="bdddb06ca550319c26aab57d2ee0ea792b0a5175565b22f1ba04813937450fb7" ;; \
-      *) echo "Unsupported architecture: ${TARGETARCH}" && exit 1 ;; \
-    esac && \
-    TMP="$(mktemp)" && \
+RUN TMP="$(mktemp)" && \
     wget -O "${TMP}" "https://github.com/VirusTotal/yara-x/releases/download/v${YARA_X_VERSION}/yara-x-v${YARA_X_VERSION}-${YARA_X_ARCH}-unknown-linux-gnu.tar.gz" && \
-    echo "${YARA_X_HASH} ${TMP}" | sha256sum -c - && \
     mkdir -p "/opt/yara-x" && \
     tar -xzf "${TMP}" -C "/opt/yara-x/" && \
     rm "${TMP}" && \
