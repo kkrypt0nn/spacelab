@@ -1,30 +1,46 @@
-name: Build and push Docker images
+name: Release
 
 on:
   workflow_dispatch:
     inputs:
       version:
-        description: Docker image version (must start with v)
+        description: Release version (must start with v)
         required: true
         type: string
+      create_docker_images:
+        description: Create and push Docker images
+        required: true
+        type: boolean
+        default: true
+      create_git_tag:
+        description: Create Git tag and GitHub Release
+        required: true
+        type: boolean
+        default: true
 
 permissions:
-  contents: read
+  contents: write
   packages: write
 
 jobs:
-  build_and_push:
-    name: Build and push Docker images
+  validate:
+    name: Validate version
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
-
       - name: Validate version
         run: |
           [[ "${VERSION}" == v* ]] || (echo "Version must start with v" && exit 1)
         env:
           VERSION: ${{ inputs.version }}
+
+  docker:
+    name: Create docker images
+    needs: validate
+    if: ${{ inputs.create_docker_images }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
       - name: Extract version without v
         id: version
@@ -60,6 +76,17 @@ jobs:
             kkrypt0nn/spacelab:${{ steps.version.outputs.version_no_v }}
             ghcr.io/kkrypt0nn/spacelab:latest
             ghcr.io/kkrypt0nn/spacelab:${{ steps.version.outputs.version_no_v }}
+
+  release:
+    name: Create git tag
+    needs: validate
+    if: ${{ inputs.create_git_tag }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
 
       - name: Create and push Git tag
         run: |
