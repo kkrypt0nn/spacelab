@@ -61,6 +61,33 @@
 
   "packageRules": [
     {
+      "description": "Customize GitHub Actions update PR titles",
+      "matchManagers": ["github-actions"],
+      "groupName": "GitHub Actions",
+      "groupSlug": "github-actions",
+      "commitMessagePrefix": "ci(actions):",
+      "commitMessageTopic": "{{{groupName}}}",
+      "commitMessageExtra": "to {{newVersion}}"
+    },
+    {
+      "description": "Customize tool update PR titles",
+      "matchPackageNames": [
+        "ReFirmLabs/binwalk",
+        "dcfldd",
+        "foremost",
+        "Yamato-Security/hayabusa",
+        "scalpel",
+        "testdisk",
+        "sleuthkit",
+        "volatilityfoundation/volatility3",
+        "yara",
+        "VirusTotal/yara-x"
+      ],
+      "commitMessagePrefix": "chore(tools):",
+      "commitMessageTopic": "{{depName}}",
+      "commitMessageExtra": "to {{newVersion}}"
+    },
+    {
       "description": "Group all GitHub Actions updates",
       "matchManagers": ["github-actions"],
       "groupName": "GitHub Actions",
