@@ -30,6 +30,10 @@ changelog:
       labels:
         - kind/bug
 
+    - title: "🔒 Security"
+      labels:
+        - kind/security
+
     - title: "♻️ Refactoring"
       labels:
         - kind/refactor
