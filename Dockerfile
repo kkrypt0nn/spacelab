@@ -91,7 +91,12 @@ RUN TMP="$(mktemp)" && \
     rm -r "/tmp/binwalk/"
 
 # Hayabusa
-RUN TMP="$(mktemp)" && \
+RUN case "${TARGETARCH}" in \
+      amd64) HAYABUSA_ARCH="x64-gnu" ;; \
+      arm64) HAYABUSA_ARCH="aarch64-gnu" ;; \
+      *) echo "Unsupported architecture: ${TARGETARCH}" && exit 1 ;; \
+    esac && \
+    TMP="$(mktemp)" && \
     wget -O "${TMP}" "https://github.com/Yamato-Security/hayabusa/releases/download/v${HAYABUSA_VERSION}/hayabusa-${HAYABUSA_VERSION}-lin-${HAYABUSA_ARCH}.zip" && \
     mkdir -p "/opt/hayabusa" && \
     unzip -q "${TMP}" -d "/opt/hayabusa/" && \
@@ -111,7 +116,12 @@ RUN TMP="$(mktemp)" && \
 ENV PATH="/root/.local/bin:${PATH}"
 
 # YARA-X
-RUN TMP="$(mktemp)" && \
+RUN case "${TARGETARCH}" in \
+      amd64) YARA_X_ARCH="x86_64" ;; \
+      arm64) YARA_X_ARCH="aarch64" ;; \
+      *) echo "Unsupported architecture: ${TARGETARCH}" && exit 1 ;; \
+    esac && \
+    TMP="$(mktemp)" && \
     wget -O "${TMP}" "https://github.com/VirusTotal/yara-x/releases/download/v${YARA_X_VERSION}/yara-x-v${YARA_X_VERSION}-${YARA_X_ARCH}-unknown-linux-gnu.tar.gz" && \
     mkdir -p "/opt/yara-x" && \
     tar -xzf "${TMP}" -C "/opt/yara-x/" && \
