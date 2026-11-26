@@ -3,6 +3,7 @@
 area/docs:
   - changed-files:
       - any-glob-to-any-file:
+          - CONTRIBUTING.md
           - README.md
 area/github:
   - changed-files:

@@ -13,6 +13,7 @@ changelog:
       labels:
         - tool/binwalk
         - tool/dcfldd
+        - tool/exiftool
         - tool/foremost
         - tool/hayabusa
         - tool/scalpel

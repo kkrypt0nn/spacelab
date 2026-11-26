@@ -74,6 +74,7 @@
       "matchPackageNames": [
         "ReFirmLabs/binwalk",
         "dcfldd",
+        "libimage-exiftool-perl",
         "foremost",
         "Yamato-Security/hayabusa",
         "scalpel",
@@ -102,6 +103,11 @@
       "description": "Label dcfldd updates",
       "matchPackageNames": ["dcfldd"],
       "addLabels": ["tool/dcfldd"]
+    },
+    {
+      "description": "Label ExifTool updates",
+      "matchPackageNames": ["libimage-exiftool-perl"],
+      "addLabels": ["tool/exiftool"]
     },
     {
       "description": "Label Foremost updates",

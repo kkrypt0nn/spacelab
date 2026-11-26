@@ -23,6 +23,7 @@ Contributions are more than welcome while following the [Contributing Guidelines
 ### Disk & File System Forensics
 
 - [`dcfldd`](https://dcfldd.sourceforge.net/) - Version `1.9.3-2` <!-- renovate: datasource=deb depName=dcfldd -->
+- [`ExifTool`](https://exiftool.org/) - Version `13.50+dfsg-1` <!-- renovate: datasource=deb depName=libimage-exiftool-perl -->
 - [`Foremost`](https://foremost.sourceforge.net/) - Version `1.5.7-11build1` <!-- renovate: datasource=deb depName=foremost -->
 - [`The Sleuth Kit`](https://www.sleuthkit.org/) - Version `4.12.1+dfsg-3build1` <!-- renovate: datasource=deb depName=sleuthkit -->
 - [`TestDisk & PhotoRec`](https://www.cgsecurity.org/) - Version `7.2-0.1build1` <!-- renovate: datasource=deb depName=testdisk -->
