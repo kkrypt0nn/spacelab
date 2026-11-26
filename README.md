@@ -42,6 +42,7 @@ Contributions are more than welcome while following the [Contributing Guidelines
 ### Log Analysis & Incident Response
 
 - [`Hayabusa`](https://github.com/Yamato-Security/hayabusa) - Version `4.4.0` <!-- renovate: datasource=github-tags depName=Yamato-Security/hayabusa -->
+- [`Plaso`](https://plaso.readthedocs.io/en/latest/) - Version `20241006-4` <!-- renovate: datasource=deb depName=plaso -->
 
 ### Network Analysis
 

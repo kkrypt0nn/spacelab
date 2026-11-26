@@ -27,6 +27,11 @@ ARG FOREMOST_VERSION="1.5.7-11build1"
 # renovate: datasource=github-tags depName=Yamato-Security/hayabusa
 ARG HAYABUSA_VERSION="4.4.0"
 
+# Plaso
+# https://packages.ubuntu.com/resolute/plaso
+# renovate: datasource=deb depName=plaso
+ARG PLASO_VERSION="20241006-4"
+
 # Scalpel
 # https://packages.ubuntu.com/resolute/scalpel
 # renovate: datasource=deb depName=scalpel
@@ -86,12 +91,13 @@ RUN apt update && apt install -y --no-install-recommends \
       unzip \
       wget \
       "dcfldd=${DCFLDD_VERSION}" \
-      "libimage-exiftool-perl=${EXIFTOOL_VERSION}}" \
+      "libimage-exiftool-perl=${EXIFTOOL_VERSION}" \
       "foremost=${FOREMOST_VERSION}" \
+      "plaso=${PLASO_VERSION}" \
       "scalpel=${SCALPEL_VERSION}" \
       "tcpdump=${TCPDUMP_VERSION}" \
       "testdisk=${TESTDISK_VERSION}" \
-      "tshark=${TSHARK_VERSION}}" \
+      "tshark=${TSHARK_VERSION}" \
       "sleuthkit=${TSK_VERSION}" \
       "yara=${YARA_VERSION}" && \
     rm -rf /var/lib/apt/lists/*
