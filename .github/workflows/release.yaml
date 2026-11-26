@@ -71,6 +71,8 @@ jobs:
           file: ./Dockerfile
           platforms: linux/amd64,linux/arm64
           push: true
+          cache-from: type=gha,scope=spacelab
+          cache-to: type=gha,scope=spacelab,mode=max,ignore-error=true
           tags: |
             kkrypt0nn/spacelab:latest
             kkrypt0nn/spacelab:${{ steps.version.outputs.version_no_v }}

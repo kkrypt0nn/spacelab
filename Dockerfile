@@ -89,17 +89,47 @@ RUN apt update && apt install -y --no-install-recommends \
       python3-pip \
       tar \
       unzip \
-      wget \
-      "dcfldd=${DCFLDD_VERSION}" \
-      "libimage-exiftool-perl=${EXIFTOOL_VERSION}" \
-      "foremost=${FOREMOST_VERSION}" \
-      "plaso=${PLASO_VERSION}" \
-      "scalpel=${SCALPEL_VERSION}" \
-      "tcpdump=${TCPDUMP_VERSION}" \
-      "testdisk=${TESTDISK_VERSION}" \
-      "tshark=${TSHARK_VERSION}" \
-      "sleuthkit=${TSK_VERSION}" \
-      "yara=${YARA_VERSION}" && \
+      wget && \
+    rm -rf /var/lib/apt/lists/*
+
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends "dcfldd=${DCFLDD_VERSION}" && \
+    rm -rf /var/lib/apt/lists/*
+
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends "libimage-exiftool-perl=${EXIFTOOL_VERSION}" && \
+    rm -rf /var/lib/apt/lists/*
+
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends "foremost=${FOREMOST_VERSION}" && \
+    rm -rf /var/lib/apt/lists/*
+
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends "plaso=${PLASO_VERSION}" && \
+    rm -rf /var/lib/apt/lists/*
+
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends "scalpel=${SCALPEL_VERSION}" && \
+    rm -rf /var/lib/apt/lists/*
+
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends "tcpdump=${TCPDUMP_VERSION}" && \
+    rm -rf /var/lib/apt/lists/*
+
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends "testdisk=${TESTDISK_VERSION}" && \
+    rm -rf /var/lib/apt/lists/*
+
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends "tshark=${TSHARK_VERSION}" && \
+    rm -rf /var/lib/apt/lists/*
+
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends "sleuthkit=${TSK_VERSION}" && \
+    rm -rf /var/lib/apt/lists/*
+
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends "yara=${YARA_VERSION}" && \
     rm -rf /var/lib/apt/lists/*
 
 # binwalk
