@@ -43,6 +43,11 @@ Contributions are more than welcome while following the [Contributing Guidelines
 
 - [`Hayabusa`](https://github.com/Yamato-Security/hayabusa) - Version `4.4.0` <!-- renovate: datasource=github-tags depName=Yamato-Security/hayabusa -->
 
+### Network Analysis
+
+- [`tcpdump`](https://www.tcpdump.org/) - Version `4.99.6-1` <!-- renovate: datasource=deb depName=tcpdump -->
+- [`tshark`](https://www.wireshark.org/docs/man-pages/tshark.html) - Version `4.6.4-1` <!-- renovate: datasource=deb depName=tshark -->
+
 ## Disclaimer
 
 This image is intended for legitimate digital forensics, incident response, and security research purposes. Always ensure you have proper authorization before analyzing data or systems that you do not own.
