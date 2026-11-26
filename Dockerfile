@@ -12,6 +12,11 @@ ARG BINWALK_VERSION="3.1.0"
 # renovate: datasource=deb depName=dcfldd
 ARG DCFLDD_VERSION="1.9.3-2"
 
+# exiftool
+# https://packages.ubuntu.com/resolute/libimage-exiftool-perl
+# renovate: datasource=deb depName=libimage-exiftool-perl
+ARG EXIFTOOL_VERSION="13.50+dfsg-1"
+
 # Foremost
 # https://packages.ubuntu.com/resolute/foremost
 # renovate: datasource=deb depName=foremost
@@ -59,6 +64,7 @@ RUN apt update && apt install -y --no-install-recommends \
       ca-certificates \
       cargo \
       file \
+      gpgv \
       libfontconfig1-dev \
       libjpeg-dev \
       libusb-1.0-0-dev \
@@ -70,6 +76,7 @@ RUN apt update && apt install -y --no-install-recommends \
       unzip \
       wget \
       "dcfldd=${DCFLDD_VERSION}" \
+      "libimage-exiftool-perl=${EXIFTOOL_VERSION}}" \
       "foremost=${FOREMOST_VERSION}" \
       "scalpel=${SCALPEL_VERSION}" \
       "testdisk=${TESTDISK_VERSION}" \
