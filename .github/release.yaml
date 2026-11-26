@@ -16,6 +16,7 @@ changelog:
         - tool/exiftool
         - tool/foremost
         - tool/hayabusa
+        - tool/plaso
         - tool/scalpel
         - tool/tcpdump
         - tool/testdisk
