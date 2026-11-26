@@ -2,6 +2,12 @@
 
 ### 🔬 A ready-to-use Docker image packed with digital forensics tools
 
+> [!WARNING]
+> Spacelab is a Docker container, not a fully isolated VM. Containers share the host kernel and mounting host directories exposes those files to the container.
+>
+> - **Non-malicious artifacts:** Using the container directly is generally fine.
+> - **Malware artifacts:** Run the Spacelab image inside an isolated VM for safer analysis.
+
 ## Example usage
 
 Start an interactive session with the current directory's `data` folder mounted inside the container:
@@ -51,4 +57,4 @@ Contributions are more than welcome while following the [Contributing Guidelines
 
 ## Disclaimer
 
-This image is intended for legitimate digital forensics, incident response, and security research purposes. Always ensure you have proper authorization before analyzing data or systems that you do not own.
+This image is intended for legitimate digital forensics, incident response, and security research purposes. Always ensure you have proper authorization before analyzing data or systems that you do not own. The authors assume no liability for misuse, damages or data loss resulting from the use of this image.
