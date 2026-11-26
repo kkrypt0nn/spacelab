@@ -17,7 +17,9 @@ changelog:
         - tool/foremost
         - tool/hayabusa
         - tool/scalpel
+        - tool/tcpdump
         - tool/testdisk
+        - tool/tshark
         - tool/sleuthkit
         - tool/volatility3
         - tool/yara

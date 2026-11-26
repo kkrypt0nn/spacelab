@@ -78,7 +78,9 @@
         "foremost",
         "Yamato-Security/hayabusa",
         "scalpel",
+        "tshark",
         "testdisk",
+        "tcpdump",
         "sleuthkit",
         "volatilityfoundation/volatility3",
         "yara",
@@ -125,9 +127,19 @@
       "addLabels": ["tool/scalpel"]
     },
     {
+      "description": "Label TShark updates",
+      "matchPackageNames": ["tshark"],
+      "addLabels": ["tool/tshark"]
+    },
+    {
       "description": "Label TestDisk & PhotoRec updates",
       "matchPackageNames": ["testdisk"],
       "addLabels": ["tool/testdisk"]
+    },
+    {
+      "description": "Label tcpdump updates",
+      "matchPackageNames": ["tcpdump"],
+      "addLabels": ["tool/tcpdump"]
     },
     {
       "description": "Label The Sleuth Kit updates",

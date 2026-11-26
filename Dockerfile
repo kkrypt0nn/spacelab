@@ -32,10 +32,20 @@ ARG HAYABUSA_VERSION="4.4.0"
 # renovate: datasource=deb depName=scalpel
 ARG SCALPEL_VERSION="1.60+git20240110.6960eb2-2build1"
 
+# tcpdump
+# https://packages.ubuntu.com/resolute/tcpdump
+# renovate: datasource=deb depName=tcpdump
+ARG TCPDUMP_VERSION="4.99.6-1"
+
 # TestDisk & PhotoRec
 # https://packages.ubuntu.com/resolute/testdisk
 # renovate: datasource=deb depName=testdisk
 ARG TESTDISK_VERSION="7.2-0.1build1"
+
+# TShark
+# https://packages.ubuntu.com/resolute/tshark
+# renovate: datasource=deb depName=tshark
+ARG TSHARK_VERSION="4.6.4-1"
 
 # The Sleuth Kit
 # https://packages.ubuntu.com/resolute/sleuthkit
@@ -79,7 +89,9 @@ RUN apt update && apt install -y --no-install-recommends \
       "libimage-exiftool-perl=${EXIFTOOL_VERSION}}" \
       "foremost=${FOREMOST_VERSION}" \
       "scalpel=${SCALPEL_VERSION}" \
+      "tcpdump=${TCPDUMP_VERSION}" \
       "testdisk=${TESTDISK_VERSION}" \
+      "tshark=${TSHARK_VERSION}}" \
       "sleuthkit=${TSK_VERSION}" \
       "yara=${YARA_VERSION}" && \
     rm -rf /var/lib/apt/lists/*
